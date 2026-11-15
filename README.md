@@ -1,8 +1,8 @@
-# LUNA NAV
+# LUNA NAV (LunaGuide)
 
 **Lunar Navigation, Illumination & Communication Analysis**
 
-LUNA NAV is a lunar south-pole mission-planning demonstrator for comparing where and when Sun illumination and Earth line of sight may be available. It combines lunar-surface observer ephemerides, an interactive sky view, sampled visibility analysis, and side-by-side site/date scenarios.
+LUNA NAV (LunaGuide) is a NASA Space Apps Challenge project and lunar south-pole mission-planning demonstrator for comparing where and when Sun illumination and Earth line of sight may be available. It combines lunar-surface observer ephemerides, an interactive sky view, sampled visibility analysis, and side-by-side site/date scenarios.
 
 > LUNA NAV is a screening and educational tool. It is not flight software, a certified landing-site assessment, a terrain-clearance analysis, or a communications link-budget tool.
 
