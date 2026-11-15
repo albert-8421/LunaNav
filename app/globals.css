@@ -277,3 +277,18 @@ h1 em{color:#9a6728;font-style:normal}
 .scenario-details[open] summary:after{content:"−"}
 .scenario-details .scenario-stats{margin-top:5px}
 @media(max-width:680px){.topbar{flex-wrap:wrap;padding-top:8px}.topbar nav{display:flex;order:3;flex:0 0 100%;height:40px;overflow-x:auto;justify-content:flex-start;gap:21px;margin:0;color:#687578;scrollbar-width:none}.topbar nav::-webkit-scrollbar{display:none}.topbar nav a{height:40px;white-space:nowrap}.topbar nav a.active:after{bottom:0}.topbar nav a:nth-child(n){display:flex}}
+
+.about-section{margin-top:34px;border-top:1px solid #dedbd2;padding-top:22px}
+.about-section .section-heading{margin:0 0 14px}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #dedbd2;background:#fffefa}
+.about-project,.about-team{padding:20px 22px}
+.about-team{border-left:1px solid #dedbd2}
+.about-label{font:600 12px "Segoe UI",Arial,sans-serif;color:#8c642d}
+.about-project p,.about-team p{max-width:620px;color:#526165;font-size:13px;line-height:1.6;margin:9px 0 0}
+.about-project .about-event{border-top:1px solid #e4e1d9;padding-top:10px;margin-top:14px;color:#526165}
+.about-event strong{font-size:11px;font-weight:600;color:#697579}
+.team-names{font-weight:600;color:#2e3d41!important}
+.team-names i{font-style:normal;color:#a87531;padding:0 3px}
+.team-contact{display:inline-flex;flex-direction:column;gap:3px;margin-top:15px;color:#76551f;font-size:12px;text-decoration:underline;text-decoration-color:#d4c7aa;text-underline-offset:3px}
+.team-contact span{color:#536366;font-size:12px;text-decoration:none}
+@media(max-width:680px){.about-grid{grid-template-columns:1fr}.about-project,.about-team{padding:16px}.about-team{border-left:0;border-top:1px solid #dedbd2}}

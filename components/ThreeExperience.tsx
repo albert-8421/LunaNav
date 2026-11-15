@@ -547,11 +547,11 @@ export default function ThreeExperience({ site, point, mode, onSelectSite }: Pro
   const resetView = () => { setView("globe"); setResetVersion((version) => version + 1); };
   const sunVisible = point !== null && point.sunEl >= 0;
   const earthVisible = point !== null && point.earthEl >= 0;
-  const sourceLabel = mode === "demo" ? "SAMPLE PREVIEW" : status === "ready" ? "NASA POSITIONS LOADED" : status === "loading" ? "GETTING NASA POSITIONS" : "NASA DATA UNAVAILABLE";
+  const sourceLabel = mode === "demo" ? "Sample preview" : status === "ready" ? "NASA positions loaded" : status === "loading" ? "Getting NASA positions" : "NASA data unavailable";
 
   return <section className={`experience-panel ${fullScreen ? "is-fullscreen" : ""}`} id="lunar-explorer" ref={panel}>
     <div className="experience-head">
-      <div><span className="panel-kicker">OPTIONAL VISUAL EXPLORER</span><h2>Explore the Moon</h2><p>Look around an illustration of the Moon and see where the reference places are located.</p></div>
+      <div><span className="panel-kicker">Optional visual</span><h2>Explore the Moon</h2><p>View the Moon illustration and the marked reference places.</p></div>
       <div className="experience-head-actions"><span className={`experience-source ${mode} ${status}`}>{sourceLabel}</span><button className="experience-icon" onClick={toggleFullscreen} aria-label={fullScreen ? "Exit fullscreen" : "Open fullscreen"}><Expand size={15}/></button></div>
     </div>
     <div className="experience-toolbar">
@@ -567,21 +567,21 @@ export default function ThreeExperience({ site, point, mode, onSelectSite }: Pro
         {canRender && <SceneCanvas key={`${view}-${resetVersion}`} view={view} site={site} point={point} onSelectSite={onSelectSite}/>}
         <div className="canvas-vignette" aria-hidden="true"/>
         <div className="canvas-caption">
-          {view === "globe" && <><span>ILLUSTRATION · NOT A PHOTOGRAPH OR MAP</span><b>Reference places are marked near the south pole.</b></>}
-          {view === "surface" && <><span>GENERIC SURFACE ILLUSTRATION · NOT LOCAL TERRAIN</span><b>This view does not show measured hills or shadows at the selected place.</b></>}
-          {view === "sky" && <><span>SKY DIRECTIONS · AZIMUTH MEASURED FROM NORTH</span><b>{point?`Sun ${point.sunAz.toFixed(1)}° / ${point.sunEl.toFixed(1)}° · Earth ${point.earthAz.toFixed(1)}° / ${point.earthEl.toFixed(1)}°`:status==="loading"?"Getting sky positions from NASA…":"Sky positions are not available yet."} · direction markers are not to scale</b></>}
+          {view === "globe" && <><span>Illustration · not a map</span><b>Reference places are marked near the south pole.</b></>}
+          {view === "surface" && <><span>Generic surface · not local terrain</span><b>This view does not show measured hills or shadows at the selected place.</b></>}
+          {view === "sky" && <><span>Sky directions · measured from north</span><b>{point?`Sun ${point.sunAz.toFixed(1)}° / ${point.sunEl.toFixed(1)}° · Earth ${point.earthAz.toFixed(1)}° / ${point.earthEl.toFixed(1)}°`:status==="loading"?"Getting sky positions from NASA…":"Sky positions are not available yet."} · markers are not to scale</b></>}
         </div>
-        <div className="canvas-controls-hint">DRAG TO ROTATE <i/> SCROLL TO ZOOM</div>
+        <div className="canvas-controls-hint">Drag to rotate <i/> scroll to zoom</div>
       </div>
       <aside className="experience-telemetry">
-        <div className="telemetry-site"><span>PLACE SELECTED</span><strong>{site.name}</strong><small>{site.latitude.toFixed(4)}° · {readableLon(site.longitude)}</small></div>
-        {view === "globe" ? <div className="site-picker-3d"><span>REFERENCE PLACES</span>{availableSites.map((candidate) => <button key={candidate.id} className={candidate.id === site.id ? "selected" : ""} onClick={() => onSelectSite(candidate.id)}><i/>{candidate.name}<small>{candidate.code}</small></button>)}</div> : point ? <div className="telemetry-bodies">
-          <span>{mode==="real"?"NASA SKY POSITIONS":"SAMPLE SKY POSITIONS"}</span>
-          <div><i className="telemetry-sun"/><b>Sun</b><strong>{point.sunAz.toFixed(1)}° AZ</strong><small>{point.sunEl.toFixed(1)}° EL · {sunVisible ? "ABOVE HORIZON" : "BELOW HORIZON"}</small></div>
-          <div><i className="telemetry-earth"/><b>Earth</b><strong>{point.earthAz.toFixed(1)}° AZ</strong><small>{point.earthEl.toFixed(1)}° EL · {earthVisible ? "CENTER LINE OF SIGHT" : "CENTER BELOW HORIZON"}</small></div>
+        <div className="telemetry-site"><span>Place selected</span><strong>{site.name}</strong><small>{site.latitude.toFixed(4)}° · {readableLon(site.longitude)}</small></div>
+        {view === "globe" ? <div className="site-picker-3d"><span>Reference places</span>{availableSites.map((candidate) => <button key={candidate.id} className={candidate.id === site.id ? "selected" : ""} onClick={() => onSelectSite(candidate.id)}><i/>{candidate.name}<small>{candidate.code}</small></button>)}</div> : point ? <div className="telemetry-bodies">
+          <span>{mode==="real"?"NASA positions":"Sample positions"}</span>
+          <div><i className="telemetry-sun"/><b>Sun</b><strong>{point.sunAz.toFixed(1)}° direction</strong><small>{point.sunEl.toFixed(1)}° high · {sunVisible ? "above horizon" : "below horizon"}</small></div>
+          <div><i className="telemetry-earth"/><b>Earth</b><strong>{point.earthAz.toFixed(1)}° direction</strong><small>{point.earthEl.toFixed(1)}° high · {earthVisible ? "centre above horizon" : "centre below horizon"}</small></div>
           <p>Positions update when you move the time slider. Rotating this view does not change the calculations.</p>
-        </div> : <div className="telemetry-bodies telemetry-empty"><span>{status==="loading"?"REQUESTING EPHEMERIS":"NO CELESTIAL SAMPLE"}</span><p>{status==="error"?"JPL returned no sample. No zero-angle position is shown.":"Celestial markers appear after the selected time has an ephemeris sample."}</p></div>}
-        <div className="telemetry-foot"><span>{point?(point.source === "JPL Horizons" ? "JPL SAMPLE" : "ILLUSTRATIVE SAMPLE"):"NO SAMPLE"}</span><small>{point?new Date(point.time).toISOString().replace("T", " ").slice(0, 16)+" UTC":status==="loading"?"Awaiting response":"—"}</small></div>
+        </div> : <div className="telemetry-bodies telemetry-empty"><span>{status==="loading"?"Getting positions":"No sky positions"}</span><p>{status==="error"?"NASA returned no position for this time.":"Sky markers appear when a time sample is available."}</p></div>}
+        <div className="telemetry-foot"><span>{point?(point.source === "JPL Horizons" ? "NASA sample" : "Illustrative sample"):"No sample"}</span><small>{point?new Date(point.time).toISOString().replace("T", " ").slice(0, 16)+" UTC":status==="loading"?"Waiting for a response":"—"}</small></div>
       </aside>
     </div>
   </section>;
